@@ -31,7 +31,7 @@ class SteamDB:
         # Save all <tr> elements inside #table-apps > tbody
         self.rows = soup.select("#table-apps > tbody > tr")
 
-    def parser_one(self, num_tr):
+    def parser_one_by_rank(self, num_tr):
         """
         Parse the data from SteamDB with the given index (index start from 1)
         """
@@ -45,8 +45,50 @@ class SteamDB:
                   "All-Time_Peak": cells[4].get_text(strip=True),
                   "appid": appid}
         self.all_tables.append(parsed)
-        # print(self.all_tables)
         return parsed
+
+    def parser_one_by_appid(self, aID:str):
+        """
+        Parse the data from SteamDB with the given appid
+        """
+        for tr in self.rows:
+            appid = tr.get("data-appid")
+            if aID == appid:
+                cells = tr.find_all("td")
+                parsed_rows  = [cell.get_text(strip=True) for cell in cells]
+                row = {
+                    "rank": parsed_rows[0].replace(".", ""),
+                    "name": parsed_rows[2],
+                    "Current": parsed_rows[3],
+                    "24h_Peak": parsed_rows[4],
+                    "All-Time_Peak": parsed_rows[5],
+                    "appid": appid
+                }
+                self.all_tables.append(row)
+                return row
+        return {}
+
+    def parser_one_by_name(self, name: str):
+        """
+        Parse the data from SteamDB with the given game name
+        """
+        for tr in self.rows:
+            appid = tr.get("data-appid")
+            cells = tr.find_all("td")
+
+            parsed_rows  = [cell.get_text(strip=True) for cell in cells]
+            if parsed_rows[2].lower() == name.lower():
+                row = {
+                    "rank": parsed_rows[0].replace(".", ""),
+                    "name": parsed_rows[2],
+                    "Current": parsed_rows[3],
+                    "24h_Peak": parsed_rows[4],
+                    "All-Time_Peak": parsed_rows[5],
+                    "appid": appid
+                }
+                self.all_tables.append(row)
+                return row
+        return {}
 
     def save_to_csv(self, filename: str="steamDB.csv"):
         """

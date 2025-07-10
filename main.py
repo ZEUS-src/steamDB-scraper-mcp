@@ -4,11 +4,25 @@ mcp = FastMCP("SteamDB")
 steam_db = SteamDB()
 
 @mcp.tool()
+def parse_from_steamDB_with_name(name: str) -> dict:
+    """
+    Parse the data from SteamDB with the given game name (case insensitive)
+    """
+    return steam_db.parser_one_by_name(name)
+
+@mcp.tool()
+def parse_from_steamDB_with_appid(appid: str) ->dict:
+    """
+    Parse the data from SteamDB with the given appid
+    """
+    return steam_db.parser_one_by_appid(appid)
+
+@mcp.tool()
 def parse_from_steamDB_with_rank(rank: int) -> dict:
     """
     Parse(get) the data from SteamDB with the given (rank|id)
     """
-    return steam_db.parser_one(rank)
+    return steam_db.parser_one_by_rank(rank)
 
 @mcp.tool()
 def parse_all_from_steamDB() -> str:
@@ -17,7 +31,7 @@ def parse_all_from_steamDB() -> str:
     """
     # steam_db.__reset_tables__()
     for i in range(steam_db.total_games):
-        steam_db.parser_one(i)
+        steam_db.parser_one_by_rank(i)
     return f"Parsed {len(steam_db.all_tables)} games from SteamDB"
 
 @mcp.tool()
@@ -49,4 +63,5 @@ def save_current_parsed(filename: str="steamDB",file_type: str="csv"):
 
 if __name__ == "__main__":
     steam_db.openBrowser()  # Open browser once at startup
+    # print(steam_db.parser_one_by_name("The Witcher 3: Wild Hunt"))
     mcp.run(transport='stdio')
