@@ -1,14 +1,4 @@
 
-###
-
-<div align="center">
-  <img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge" height="25" />
-  <img src="https://img.shields.io/static/v1?message=Youtube&logo=youtube&label=&color=FF0000&logoColor=white&labelColor=&style=for-the-badge" height="25" />
-  <img src="https://img.shields.io/static/v1?message=Twitter&logo=twitter&label=&color=1DA1F2&logoColor=white&labelColor=&style=for-the-badge" height="25" />
-</div>
-
-###
-
 <div align="center">
   <img src="https://visitor-badge.laobi.icu/badge?page_id=ZEUS-src.steamDB-scraper-mcp" />
 </div>
@@ -32,7 +22,7 @@
 <p align="left">
 This is a fast, flexible scraping tool built with <strong>SeleniumBase</strong> to automate and extract game data from <a href="https://steamdb.info">SteamDB</a>.<br><br>
 
-⚠️ <strong>Note:</strong> This project uses <strong>SeleniumBase</strong> to bypass <strong>Cloudflare protections</strong>, ensuring reliable access to protected pages.<br><br>
+This project uses <strong>SeleniumBase</strong> to bypass <strong>Cloudflare protections</strong>, ensuring reliable access to protected pages.<br><br>
 
 It allows you to:
 <ul>
