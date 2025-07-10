@@ -1,9 +1,8 @@
-import asyncio
-import time
+
 from seleniumbase import sb_cdp
 from bs4 import BeautifulSoup
 import pandas as pd
-import json,os
+import os
 
 class SteamDB:
     def __init__(self):
@@ -58,7 +57,7 @@ class SteamDB:
         df = pd.DataFrame(self.all_tables)
         df.to_csv(f"Result/{filename}", index=False, encoding='utf-8-sig')
         return f"Saved {len(self.all_tables)} games to {filename}"
-        
+
     def save_to_parquet(self, filename: str="steamDB.parquet"):
         """
         Save the data to a parquet file

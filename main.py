@@ -2,7 +2,6 @@ from tools.sb import SteamDB
 from mcp.server.fastmcp import FastMCP
 mcp = FastMCP("SteamDB")
 steam_db = SteamDB()
-from pathlib import Path
 
 @mcp.tool()
 def parse_from_steamDB_with_rank(rank: int) -> dict:
